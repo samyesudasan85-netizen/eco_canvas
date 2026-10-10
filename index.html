@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eco-canvas</title>
+  <meta name="description" content="eco-canvas - Right-Sized Educational Image Generation & District FinOps Governor">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+</head>
+<body>
+  <!-- Centered Content Container with White Background -->
+  <div class="eco-container">
+    
+    <!-- Header: Title in Blue, Underlined Text -->
+    <header class="header-section">
+      <h1 class="eco-title">eco-canvas</h1>
+      <p class="eco-subtitle">Right-Sized Educational Image Generation &amp; FinOps Governor</p>
+    </header>
+
+    <!-- Thin Light-Gray Horizontal Divider Below Title -->
+    <hr class="eco-divider">
+
+    <!-- Tab Bar -->
+    <nav class="tab-bar">
+      <button class="tab-btn active" id="tabClassroom">
+        <span>🎨</span> Classroom Generator
+      </button>
+      <button class="tab-btn" id="tabDistrict">
+        <span>🏢</span> District FinOps Portal (300 Schools)
+      </button>
+    </nav>
+
+    <!-- Tab 1: Classroom Generator -->
+    <main class="tab-panel active" id="panelClassroom">
+      <div class="content-grid">
+        <!-- Left Column: Controls -->
+        <div class="panel-card">
+          <h2 class="panel-title"><span>✏️</span> Create Classroom Asset</h2>
+
+          <div class="form-group">
+            <label class="form-label" for="promptInput">Describe the classroom asset</label>
+            <textarea 
+              id="promptInput" 
+              class="form-textarea" 
+              placeholder="For example: flower colouring for kids, plant cell diagram, or official banner..."
+            >flower colouring for kids</textarea>
+          </div>
+
+          <!-- Dynamic Purpose & Route Box -->
+          <div class="route-box">
+            <span>🤖 Detected: <strong id="detectedPurposeText">Worksheet</strong></span>
+            <span>&rarr; Auto-Routed: <strong id="routedTierText">Tier 1</strong></span>
+          </div>
+
+          <!-- Fidelity Profile Radios -->
+          <div class="form-group">
+            <label class="form-label">Fidelity Profile</label>
+            <div class="tier-group">
+              <label class="tier-item active" for="tierAuto">
+                <input type="radio" id="tierAuto" name="tier" value="auto" class="tier-radio" checked>
+                <div class="tier-text">
+                  <div class="tier-title-row">Auto-route (Recommended)</div>
+                  <div class="tier-desc">Selects optimal compute fidelity profile based on learning objectives</div>
+                </div>
+              </label>
+
+              <label class="tier-item" for="tier1">
+                <input type="radio" id="tier1" name="tier" value="1" class="tier-radio">
+                <div class="tier-text">
+                  <div class="tier-title-row">
+                    Tier 1 - Eco-Outline
+                    <span class="badge badge-1">4 Steps &bull; 512px</span>
+                  </div>
+                  <div class="tier-desc">Coloring page, clean black &amp; white line art, empty fill, zero shading</div>
+                </div>
+              </label>
+
+              <label class="tier-item" for="tier2">
+                <input type="radio" id="tier2" name="tier" value="2" class="tier-radio">
+                <div class="tier-text">
+                  <div class="tier-title-row">
+                    Tier 2 - Classroom Vector
+                    <span class="badge badge-2">15 Steps &bull; 768px</span>
+                  </div>
+                  <div class="tier-desc">Flat educational vector graphic, bold shapes, vibrant primary colors</div>
+                </div>
+              </label>
+
+              <label class="tier-item" for="tier3">
+                <input type="radio" id="tier3" name="tier" value="3" class="tier-radio">
+                <div class="tier-text">
+                  <div class="tier-title-row">
+                    Tier 3 - District Master Baseline
+                    <span class="badge badge-3">50 Steps &bull; 1024px</span>
+                  </div>
+                  <div class="tier-desc">8k masterwork photograph, official district banner, studio lighting</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Generate Asset Button -->
+          <button id="generateBtn" class="btn-generate">
+            <span class="spinner" id="btnSpinner" style="display: none;"></span>
+            <span id="btnText">⚡ Generate Asset</span>
+          </button>
+
+          <!-- Mathematical Audit Expander -->
+          <div class="accordion">
+            <button class="accordion-btn" id="accordionHeader" type="button">
+              <span>📐 How is this estimate calculated? (Constraint 1 Audit)</span>
+              <span>▼</span>
+            </button>
+            <div class="accordion-body" id="accordionContent">
+              <p><strong>Hardware Target &amp; Metric Baseline:</strong></p>
+              <ul>
+                <li>Hardware: NVIDIA A100 PCIe with 300 W active TDP.</li>
+                <li>Cloud Cost: Standard instance rate of $1.80/hour scaled to active runtime.</li>
+                <li>Tier 3 Baseline: 9.8s inference, 0.816 Wh energy, $0.0049 per generation.</li>
+                <li>India CEA Grid Factor: 0.82 g CO<sub>2</sub>e/Wh.</li>
+              </ul>
+              <p style="margin-top: 6px;"><strong>FinOps Formulas:</strong></p>
+              <ul>
+                <li><code>Energy (Wh) = [300W &times; t_infer / 3600] &times; (Steps/50) &times; (Res/1024&sup2;)</code></li>
+                <li><code>Carbon (g) = Energy (Wh) &times; 0.82 g/Wh</code></li>
+                <li><code>Cost ($) = ($1.80 / 3600) &times; t_infer &times; (Steps/50)</code></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Output & Canvas Preview -->
+        <div class="panel-card">
+          <h2 class="panel-title"><span>🖼️</span> Generated Educational Asset</h2>
+
+          <!-- Active Profile Indicator -->
+          <div class="route-box" id="resultNotice" style="display: none;">
+            <span id="activeProfileText">Active profile: Tier 1 - Eco-Outline</span>
+            <span class="badge badge-1" id="engineBadge">⚡ FLUX Visual Engine</span>
+          </div>
+
+          <!-- Canvas / Image Preview Container -->
+          <div class="canvas-frame" id="imagePreviewContainer">
+            <div class="empty-state" id="emptyState">
+              <div class="empty-icon">🌱</div>
+              <p><strong>Your generated asset will appear here.</strong></p>
+              <p style="font-size: 0.82rem; margin-top: 4px;">Enter a classroom prompt and click <em>Generate Asset</em>.</p>
+            </div>
+            <img id="imagePreview" class="preview-img" style="display: none;" alt="Generated educational asset">
+          </div>
+
+          <!-- Export Action Buttons -->
+          <div class="action-row" id="actionRow" style="display: none;">
+            <button id="downloadBtn" class="btn-outline">
+              <span>⬇️</span> Download Asset (PNG)
+            </button>
+            <a id="whatsappShareBtn" class="btn-outline btn-whatsapp" target="_blank" rel="noopener noreferrer">
+              <span>💬</span> Share on WhatsApp
+            </a>
+          </div>
+
+          <!-- Telemetry Metrics Grid -->
+          <div class="telemetry-grid" id="telemetryGrid" style="display: none;">
+            <div class="bento-card">
+              <div class="bento-label">Latency</div>
+              <div class="bento-num" id="telLatency">0.78s</div>
+              <div class="bento-sub" id="telLatencyDelta">↓ 92.0% vs Tier 3</div>
+            </div>
+
+            <div class="bento-card">
+              <div class="bento-label">Energy Drawn</div>
+              <div class="bento-num" id="telEnergy">0.0013 Wh</div>
+              <div class="bento-sub" id="telEnergyDelta">↓ 99.8% savings</div>
+            </div>
+
+            <div class="bento-card">
+              <div class="bento-label">Carbon Footprint</div>
+              <div class="bento-num" id="telCarbon">0.0011 g</div>
+              <div class="bento-sub" id="telCarbonDelta">↓ 99.8% savings</div>
+            </div>
+
+            <div class="bento-card">
+              <div class="bento-label">Compute Cost</div>
+              <div class="bento-num" id="telCost">$0.000031</div>
+              <div class="bento-sub" id="telCostDelta">↓ 99.4% savings</div>
+            </div>
+          </div>
+
+          <!-- Pedagogical Proof Note -->
+          <div class="pedagogy-callout" id="pedagogicalNotice" style="display: none;">
+            <strong>Pedagogical Proof:</strong> Tier 1 provides clean open outlines designed specifically for a 7-year-old's motor skills. A Tier 3 photorealistic render is unusable as a coloring activity and wastes 93%+ more energy.
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Tab 2: District FinOps Portal -->
+    <main class="tab-panel" id="panelDistrict">
+      <div class="header-section" style="text-align: left; margin-bottom: 1.5rem;">
+        <h2 style="font-family: var(--font-heading); font-size: 1.4rem;">District FinOps Portal (300 Schools)</h2>
+        <p style="color: var(--text-muted); font-size: 0.88rem;">District planning scenario &bull; 300 schools &bull; 45,000 monthly image requests</p>
+      </div>
+
+      <!-- District Summary Stats -->
+      <div class="portal-stats">
+        <div class="stat-box">
+          <div class="stat-label">Unconstrained Naive Spend</div>
+          <div class="stat-value">$1,800.00<span style="font-size: 0.85rem; color: var(--text-muted); font-weight: normal;">/mo</span></div>
+          <div style="font-size: 0.75rem; color: #dc2626;">All requests at Tier 3 master</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-label">eco-canvas Governed Spend</div>
+          <div class="stat-value">$220.00<span style="font-size: 0.85rem; color: var(--text-muted); font-weight: normal;">/mo</span></div>
+          <div class="stat-note">Resource-governed tier routing</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-label">Net District Savings</div>
+          <div class="stat-value">$1,580.00<span style="font-size: 0.85rem; color: var(--text-muted); font-weight: normal;">/mo</span></div>
+          <div class="stat-note">↓ 87.8% cost reduction</div>
+        </div>
+
+        <div class="stat-box">
+          <div class="stat-label">Energy Conserved</div>
+          <div class="stat-value">342 kWh<span style="font-size: 0.85rem; color: var(--text-muted); font-weight: normal;">/mo</span></div>
+          <div class="stat-note">280.4 kg CO<sub>2</sub>e emissions avoided</div>
+        </div>
+      </div>
+
+      <!-- Asset Breakdown Table -->
+      <div class="table-card">
+        <h3 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 0.75rem;">Monthly Asset Breakdown by Governed Tier</h3>
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Tier Profile</th>
+              <th>Request Share</th>
+              <th>Monthly Requests</th>
+              <th>Resolution &amp; Steps</th>
+              <th>Monthly Spend</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Tier 1 - Eco-Outline</strong></td>
+              <td><span class="badge badge-1">84%</span></td>
+              <td>37,800 requests</td>
+              <td>512 &times; 512 (4 steps)</td>
+              <td>$45.36 / mo</td>
+            </tr>
+            <tr>
+              <td><strong>Tier 2 - Classroom Vector</strong></td>
+              <td><span class="badge badge-2">11%</span></td>
+              <td>4,950 requests</td>
+              <td>768 &times; 768 (15 steps)</td>
+              <td>$84.15 / mo</td>
+            </tr>
+            <tr>
+              <td><strong>Tier 3 - District Master Baseline</strong></td>
+              <td><span class="badge badge-3">5%</span></td>
+              <td>2,250 requests</td>
+              <td>1024 &times; 1024 (50 steps)</td>
+              <td>$90.49 / mo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Governed Request Mix Progress -->
+      <div class="table-card">
+        <h3 style="font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 1rem;">Governed Request Allocation Mix</h3>
+        <div class="progress-box">
+          <div class="prog-item">
+            <div class="prog-header">
+              <span>Tier 1 - Eco-Outline (Worksheets &amp; Outlines)</span>
+              <span style="color: var(--tier1-color);">84% (37,800 requests)</span>
+            </div>
+            <div class="prog-bar">
+              <div class="prog-fill fill-1" style="width: 84%;"></div>
+            </div>
+          </div>
+
+          <div class="prog-item">
+            <div class="prog-header">
+              <span>Tier 2 - Classroom Vector (Instructional Aids)</span>
+              <span style="color: var(--tier2-color);">11% (4,950 requests)</span>
+            </div>
+            <div class="prog-bar">
+              <div class="prog-fill fill-2" style="width: 11%;"></div>
+            </div>
+          </div>
+
+          <div class="prog-item">
+            <div class="prog-header">
+              <span>Tier 3 - District Master Baseline (Official Publications)</span>
+              <span style="color: var(--tier3-color);">5% (2,250 requests)</span>
+            </div>
+            <div class="prog-bar">
+              <div class="prog-fill fill-3" style="width: 5%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
